@@ -6,20 +6,16 @@ import com.google.devtools.common.options.OptionsBase;
 public class CommandLineOptions extends OptionsBase {
 
     @Option(
-            name = "example",
-            defaultValue = "false"
-    )
-    public boolean example;
-
-    @Option(
             name = "input",
-            defaultValue = ""
+            defaultValue = "",
+            help = "value of input file or directory"
     )
     public String input;
 
     @Option(
             name = "output",
-            defaultValue = ""
+            defaultValue = "",
+            help = "value of output directory"
     )
     public String output;
 }

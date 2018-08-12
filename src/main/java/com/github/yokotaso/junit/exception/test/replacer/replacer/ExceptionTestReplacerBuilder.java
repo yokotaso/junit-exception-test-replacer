@@ -1,28 +1,48 @@
 package com.github.yokotaso.junit.exception.test.replacer.replacer;
 
+
 import java.util.List;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.MethodDeclaration;
+import javax.annotation.Nullable;
 
-public class ExceptionTestReplacerBuilder implements JunitAssertionsConsumer, ExceptionTestsConsumer {
-    final CompilationUnit compilationUnit;
+import org.eclipse.collections.api.map.ImmutableMap;
+
+import com.github.javaparser.Range;
+import com.github.javaparser.ast.expr.ClassExpr;
+
+
+public class ExceptionTestReplacerBuilder {
     boolean useAssertJMultiStaticAssertions;
-    List<MethodDeclaration> methodDeclarations;
+    @Nullable
+    Range lastImportRange;
 
-    public ExceptionTestReplacerBuilder(CompilationUnit compilationUnit) {
-        this.compilationUnit = compilationUnit;
+    ImmutableMap<Range, ClassExpr> testAnnotationPositionAndExpectedClass;
+    ImmutableMap<Range, ClassExpr> lastStatementPositionAndExpectedClass;
+
+    final List<String> sourceCode;
+
+    public ExceptionTestReplacerBuilder(List<String> sourceCode) {
+        this.sourceCode = sourceCode;
     }
 
-    @Override
-    public JunitAssertionsConsumer useAssertJMultiStaticAssertions(boolean useIt) {
+
+    public ExceptionTestReplacerBuilder useAssertJMultiStaticAssertions(boolean useIt) {
         this.useAssertJMultiStaticAssertions = useIt;
         return this;
     }
 
-    @Override
-    public ExceptionTestsConsumer exceptionTests(List<MethodDeclaration> methodDeclarations) {
-        this.methodDeclarations = methodDeclarations;
+    public ExceptionTestReplacerBuilder testAnnotationPositionAndExpectedClass(ImmutableMap<Range, ClassExpr> methodDeclarations) {
+        this.testAnnotationPositionAndExpectedClass = methodDeclarations;
+        return this;
+    }
+
+    public ExceptionTestReplacerBuilder lastStatementPositionAndExpectedClass(ImmutableMap<Range, ClassExpr> lastStatementPositionAndExpectedClass) {
+        this.lastStatementPositionAndExpectedClass = lastStatementPositionAndExpectedClass;
+        return this;
+    }
+
+    public ExceptionTestReplacerBuilder lastImportPosition(Range range) {
+        this.lastImportRange = range;
         return this;
     }
 

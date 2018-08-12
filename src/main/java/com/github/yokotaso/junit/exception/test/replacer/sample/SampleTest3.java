@@ -3,7 +3,7 @@ package com.github.yokotaso.junit.exception.test.replacer.sample;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.*;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 
 /**

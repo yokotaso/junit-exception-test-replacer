@@ -2,7 +2,7 @@ package com.github.yokotaso.junit.exception.test.replacer.sample;
 
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 
 /**
