@@ -1,8 +1,8 @@
-package com.github.yokotaso.junit.exception.test.replacer.visitors;
+package com.github.yokotaso.junit.exception.test.replacer.commands.exception.visitors;
 
 import com.github.javaparser.Position;
 import com.github.javaparser.Range;
-import com.github.yokotaso.junit.exception.test.replacer.replacer.ExceptionTestReplacerBuilder;
+import com.github.yokotaso.junit.exception.test.replacer.commands.exception.replacer.ExceptionTestReplacerBuilder;
 
 
 public class AssertionImports {

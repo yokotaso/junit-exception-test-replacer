@@ -1,4 +1,4 @@
-package com.github.yokotaso.junit.exception.test.replacer.replacer;
+package com.github.yokotaso.junit.exception.test.replacer.commands.exception.replacer;
 
 import java.util.Collections;
 import java.util.List;
@@ -75,7 +75,7 @@ public class ExceptionTestReplacer {
 
     }
 
-    private String getExpcetedClass(ClassExpr classExpr) {
+    private String getExpectedClass(ClassExpr classExpr) {
         Range classExprRange = classExpr.getRange().orElseThrow(IllegalStateException::new);
 
         if (classExprRange.begin.line != classExprRange.end.line) {
@@ -86,6 +86,7 @@ public class ExceptionTestReplacer {
 
     /**
      * <pre></pre>
+     *
      * @param rangeAndClassExpr
      */
     private void addPatchAssertThatThrownByWithStatement(Pair<Range, ClassExpr> rangeAndClassExpr) {
@@ -96,7 +97,7 @@ public class ExceptionTestReplacer {
 
         StringBuilder newSource = new StringBuilder(indent).append("assertThatThrownBy(() -> ");
         newSource.append(sourceCode.get(beginLine).substring(beginColumn, range.end.column - 1));
-        newSource.append(").isInstanceOf(").append(getExpcetedClass(rangeAndClassExpr.getTwo())).append(");");
+        newSource.append(").isInstanceOf(").append(getExpectedClass(rangeAndClassExpr.getTwo())).append(");");
 
         Chunk<String> oldChunk = new Chunk<>(beginLine, Collections.singletonList(sourceCode.get(beginLine)));
         Chunk<String> newChunk = new Chunk<>(beginLine, Collections.singletonList(newSource.toString()));
@@ -137,7 +138,7 @@ public class ExceptionTestReplacer {
             newSource.add(indent + sourceCode.get(i));
         }
 
-        String classExpr = getExpcetedClass(rangeAndClassExpr.getTwo());
+        String classExpr = getExpectedClass(rangeAndClassExpr.getTwo());
         newSource.add(indent + "}).isInstanceOf(" + classExpr + ");");
 
         Chunk<String> oldChunk = new Chunk<>(beginLine, oldSource);

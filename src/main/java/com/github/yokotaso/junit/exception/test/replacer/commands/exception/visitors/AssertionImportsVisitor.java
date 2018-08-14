@@ -1,4 +1,4 @@
-package com.github.yokotaso.junit.exception.test.replacer.visitors;
+package com.github.yokotaso.junit.exception.test.replacer.commands.exception.visitors;
 
 import com.github.javaparser.Range;
 import com.github.javaparser.ast.ImportDeclaration;

@@ -1,4 +1,4 @@
-package com.github.yokotaso.junit.exception.test.replacer.visitors;
+package com.github.yokotaso.junit.exception.test.replacer.commands.exception.visitors;
 
 import java.util.List;
 import java.util.Optional;

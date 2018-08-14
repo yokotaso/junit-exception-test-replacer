@@ -1,8 +1,7 @@
-package com.github.yokotaso.junit.exception.test.replacer.commands;
+package com.github.yokotaso.junit.exception.test.replacer.commands.exception;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,19 +15,19 @@ import org.apache.commons.io.IOUtils;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.yokotaso.junit.exception.test.replacer.replacer.ExceptionTestReplacerBuilder;
-import com.github.yokotaso.junit.exception.test.replacer.visitors.AssertionImports;
-import com.github.yokotaso.junit.exception.test.replacer.visitors.AssertionImportsVisitor;
-import com.github.yokotaso.junit.exception.test.replacer.visitors.ExceptionTest;
-import com.github.yokotaso.junit.exception.test.replacer.visitors.ExceptionTestVisitor;
+import com.github.yokotaso.junit.exception.test.replacer.commands.CodeModification;
+import com.github.yokotaso.junit.exception.test.replacer.commands.CommandExecutable;
+import com.github.yokotaso.junit.exception.test.replacer.commands.exception.replacer.ExceptionTestReplacerBuilder;
+import com.github.yokotaso.junit.exception.test.replacer.commands.exception.visitors.AssertionImports;
+import com.github.yokotaso.junit.exception.test.replacer.commands.exception.visitors.AssertionImportsVisitor;
+import com.github.yokotaso.junit.exception.test.replacer.commands.exception.visitors.ExceptionTest;
+import com.github.yokotaso.junit.exception.test.replacer.commands.exception.visitors.ExceptionTestVisitor;
 
 
-public class JavaFileModificationCommand implements CommandExecutable {
+public class ExceptionTestModifyCommand implements CommandExecutable {
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
-    private final File tempFile;
 
-    public JavaFileModificationCommand() throws IOException {
-        this.tempFile = File.createTempFile("/tmp/", ".java.tmp");
+    public ExceptionTestModifyCommand() throws IOException {
     }
 
     @Override

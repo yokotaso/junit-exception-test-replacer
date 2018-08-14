@@ -19,7 +19,8 @@ import com.github.javaparser.ParseProblemException;
 import com.github.yokotaso.junit.exception.test.replacer.commands.CodeModification;
 import com.github.yokotaso.junit.exception.test.replacer.commands.CommandExecutable;
 import com.github.yokotaso.junit.exception.test.replacer.commands.CommandLineOptions;
-import com.github.yokotaso.junit.exception.test.replacer.commands.JavaFileModificationCommand;
+import com.github.yokotaso.junit.exception.test.replacer.commands.annotations.ClassicAnnotationModifyCommand;
+import com.github.yokotaso.junit.exception.test.replacer.commands.exception.ExceptionTestModifyCommand;
 import com.google.devtools.common.options.OptionsParser;
 
 /*
@@ -44,17 +45,26 @@ public class JunitExceptionTestReplacerApp {
                         .map(Path::toFile)
                         .collect(Collectors.toList()));
             }
+
+            CommandExecutable executable = null;
+            if (commandLineOptions.replace.equals("exception-test")) {
+                executable = new ExceptionTestModifyCommand();
+            } else if (commandLineOptions.replace.equals("classic-annotation")) {
+                executable = new ClassicAnnotationModifyCommand();
+            } else {
+                throw new IllegalArgumentException("unknown replace option:" + commandLineOptions.replace);
+            }
+
             for (File input : inputFiles) {
-                CommandExecutable executable = new JavaFileModificationCommand();
                 CodeModification codeModification;
                 try (InputStream inputStream = new FileInputStream(input.getAbsolutePath())) {
-                    codeModification = executable.invokeCodeModification(inputStream);
+                    codeModification = Objects.requireNonNull(executable).invokeCodeModification(inputStream);
                 } catch (ParseProblemException e) {
-                    logger.info("Ignore: " + input.getAbsolutePath());
+                    logger.finer("Ignore: " + input.getAbsolutePath());
                     continue;
                 }
-                logger.info("Input:" + input.getAbsolutePath());
-                logger.info("Output:" + input.getAbsolutePath());
+                logger.finer("Input:" + input.getAbsolutePath());
+                logger.finer("Output:" + input.getAbsolutePath());
                 try (OutputStream outputStream = new FileOutputStream(input.getAbsolutePath())) {
                     executable.invokeApplyCodeModification(outputStream, Objects.requireNonNull(codeModification));
                 }

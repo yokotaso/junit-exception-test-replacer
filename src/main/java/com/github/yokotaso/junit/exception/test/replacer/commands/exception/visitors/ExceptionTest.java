@@ -1,4 +1,4 @@
-package com.github.yokotaso.junit.exception.test.replacer.visitors;
+package com.github.yokotaso.junit.exception.test.replacer.commands.exception.visitors;
 
 
 import org.eclipse.collections.api.map.MutableMap;
@@ -6,7 +6,7 @@ import org.eclipse.collections.impl.factory.Maps;
 
 import com.github.javaparser.Range;
 import com.github.javaparser.ast.expr.ClassExpr;
-import com.github.yokotaso.junit.exception.test.replacer.replacer.ExceptionTestReplacerBuilder;
+import com.github.yokotaso.junit.exception.test.replacer.commands.exception.replacer.ExceptionTestReplacerBuilder;
 
 
 public class ExceptionTest {

@@ -18,4 +18,11 @@ public class CommandLineOptions extends OptionsBase {
             help = "value of output directory"
     )
     public String output;
+
+    @Option(
+            name = "replace",
+            defaultValue = "exception-test",
+            help = "choice of replacement [exception-test|classic-annotation]"
+    )
+    public String replace;
 }

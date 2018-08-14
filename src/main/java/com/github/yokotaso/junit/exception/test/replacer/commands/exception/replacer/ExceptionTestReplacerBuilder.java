@@ -1,4 +1,4 @@
-package com.github.yokotaso.junit.exception.test.replacer.replacer;
+package com.github.yokotaso.junit.exception.test.replacer.commands.exception.replacer;
 
 
 import java.util.List;
