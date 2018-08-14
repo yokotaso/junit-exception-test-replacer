@@ -40,7 +40,7 @@ public class ClassicStyleAnnotationReplacer {
         for (Pair<Range, String> importReplace : importReplacement.keyValuesView()) {
             int line = importReplace.getOne().begin.line - 1;
             List<String> oldSource = Collections.singletonList(sourceCode.get(line));
-            List<String> newSource = Collections.singletonList("import " + importReplace.getTwo());
+            List<String> newSource = Collections.singletonList("import " + importReplace.getTwo() + ";");
             patch.addDelta(new ChangeDelta<>(new Chunk<>(line, oldSource), new Chunk<>(line, newSource)));
         }
 
