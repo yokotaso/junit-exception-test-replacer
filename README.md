@@ -4,7 +4,7 @@ This tool replace Junit4 style annotation `@Test(expected=RuntimeException.class
 ## Build
 
 ```
-./gradlew jar
+./gradlew shadowJar
 ```
 
 ## Usage
